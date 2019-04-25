@@ -11,14 +11,20 @@ Date: April 23, 2019
 
 */
 
-
+// libraries
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <vector>
 #include <string>
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 
 
+
+
+// ================================================================================================
 void printGraph(std::vector<int> adj[], int V) 
 { 
     std::cout << " number of vertices: " << V << std::endl;
@@ -32,6 +38,23 @@ void printGraph(std::vector<int> adj[], int V)
     } 
 } 
 
+// ================================================================================================
+int KargerMinCut(std::vector<int> mGraph, int& numV, int& numEdges){
+
+  int MinCut = 0;
+  int numReducedV = 0; // number of vertices after contraction
+  while ( numReducedV >2 ){
+
+
+
+  }
+
+
+
+  return MinCut;
+}
+
+
 
 // ================================================================================================
 int main(){
@@ -43,12 +66,13 @@ int numV = 8; // num of vertices in the graph
 std::vector<int> mGraph[numV];
 
 
-// Reading the Graph from the file
+// Reading the Graph from the file ----------------------------------------------------------------
 std::ifstream InputGraph("test.txt");
 std::string line;
 
 int counter = 0;
 int counterVertix; 
+int numEdges =0;
 int rootVertix; 
 while ( std::getline(InputGraph, line)){
   counter++;
@@ -61,6 +85,7 @@ while ( std::getline(InputGraph, line)){
         if (counterVertix==1) rootVertix = vertix-1;
         //std::cout << vertix << "\n";
         if (counterVertix != 1) {
+          numEdges++;
           mGraph[rootVertix].push_back(vertix-1);
           std::cout << rootVertix << "   " << vertix << "\n";
         }
@@ -68,11 +93,17 @@ while ( std::getline(InputGraph, line)){
 }
 
 InputGraph.close(); 
-
+numEdges = numEdges/2;
 printGraph(mGraph, 8);
 
+// contraction algorithm (Karger) -----------------------------------------------------------------
 
-//================================
+srand(time(NULL));
+
+int MinCut = KargerMinCut(mGraph, numV, numEdges);
+std::cout << " \n Min number of cut is: " << MinCut << "\n";
+
+// Closing the code -------------------------------------------------------------------------------
 std::cout << "\n End of the code! \n";
 
 return 0;
