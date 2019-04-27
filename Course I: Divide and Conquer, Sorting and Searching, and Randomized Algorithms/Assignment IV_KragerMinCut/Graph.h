@@ -44,7 +44,7 @@ public:
   void read();
   void addEdge(int src, int dest);
   void printGraph();
-  void printEdges(int numV);
+  
 
 };
 
