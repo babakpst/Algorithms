@@ -14,6 +14,7 @@ Date: April 23, 2019
 // libraries
 #include <iostream>
 #include "Graph.h"
+#include "KargerMinCut.h"
 
 // ================================================================================================
 int main(){
@@ -34,10 +35,18 @@ mGraph.printGraph();
 
 // contraction algorithm (Karger) -----------------------------------------------------------------
 
-//srand(time(NULL));
+srand(time(NULL));
 
-//int MinCut = KargerMinCut(mGraph, numV, numEdges);
-//std::cout << " \n Min number of cut is: " << MinCut << "\n";
+Karger KargerAlgo(mGraph);
+
+  for(int i = 0; i<iter; ++i){
+    int check = KargerAlgo.KargerMinCut();
+    std::cout << " MinCut in iteration: " << i << " is: " << check << "\n";
+    if ( MinCut > check ) MinCut = check; 
+    }
+
+
+std::cout << " \n Min number of cut is: " << MinCut << "\n";
 
 // Closing the code -------------------------------------------------------------------------------
 std::cout << "\n End of the code! \n";
