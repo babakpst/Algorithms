@@ -37,13 +37,18 @@ mGraph.printGraph();
 
 srand(time(NULL));
 
-Karger KargerAlgo(mGraph);
-
-  for(int i = 0; i<iter; ++i){
-    int check = KargerAlgo.KargerMinCut();
-    std::cout << " MinCut in iteration: " << i << " is: " << check << "\n";
+int check;
+  //for(int i = 0; i<iter; ++i){
+    Karger KargerAlgo(mGraph);
+    std::cout << " loop 000 " << std::endl;
+    check = KargerAlgo.KargerMinCut();
+    std::cout << " loop 001 " << std::endl;
+    //std::cout << " MinCut in iteration: " << i << " is: " << check << "\n";
+    std::cout << " loop 002 " << std::endl;
     if ( MinCut > check ) MinCut = check; 
-    }
+    std::cout << " loop 003 " << std::endl;
+    
+    //}
 
 
 std::cout << " \n Min number of cut is: " << MinCut << "\n";

@@ -46,7 +46,6 @@ while ( std::getline(InputGraph, line)){
   std::cout << " Reading vertix: " << counter << "\n";
     while (iss >> dest){
         if (dest > src) {
-          numE++;
           addEdge(src, dest);
           }
         }
@@ -57,8 +56,6 @@ std::cout << " total number of edges: " << numE << "\n";
 
 }
 
-
-
 void Graph::printGraph() 
 { 
   for (std::vector<Edge>::iterator itr=edges.begin(); itr!=edges.end(); ++itr){
@@ -67,3 +64,7 @@ void Graph::printGraph()
 } 
 
 
+Graph::Edge Graph::getEdge(int index){return edges[index];}
+
+Graph::~Graph(){}
+Graph::Edge::~Edge(){}

@@ -27,6 +27,7 @@ private:
     int src, dest;
     Edge();
     Edge(int src, int dest);
+    ~Edge();
   };
 
   std::vector<Edge> edges;
@@ -37,6 +38,7 @@ public:
   Graph();
   Graph(int numV);
   Graph(int numV, int numE);
+  ~Graph();
 
   int getNumV();
   int getNumE();
@@ -45,6 +47,8 @@ public:
   void addEdge(int src, int dest);
   void printGraph();
   
+Edge getEdge(int index);
+
 };
 
 #endif

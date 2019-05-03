@@ -1,4 +1,8 @@
 
+
+#ifndef KARGERMINCUT_H
+#define KARGERMINCUT_H
+
 #include <vector>
 #include <stdio.h>
 #include <time.h>
@@ -16,10 +20,12 @@ private:
 public:
 
 Karger();
-Karger(Graph& cutGraph);
+Karger(Graph cutGraph);
 
+~Karger();
 int KargerMinCut();
 
 };
 
 
+#endif
