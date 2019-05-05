@@ -1,16 +1,15 @@
 
 #include "Graph.h"
 
-
 Graph::Graph():numV{1}, numE{0}{
   std::cout << " Creating graph, no initialization. \n";
 }
 
-Graph::Graph(int numV):numV{numV}, numE{0}{
+Graph::Graph(int numV, std::string FileName):numV{numV}, numE{0}, FileName{FileName}{
   std::cout << " Creating the graph object, initialization with no of vertices ...\n";
 }
 
-Graph::Graph(int numV, int numE):numV{numV}, numE{numE}, edges(numE){
+Graph::Graph(int numV, int numE, std::string FileName):numV{numV}, numE{numE}, FileName{FileName}, edges(numE){
   std::cout << " Creating the graph object, full initialization ...\n";
 }
 
@@ -29,11 +28,11 @@ void Graph::addEdge(int src, int dest){
   numE++;
 }
 
-
 void Graph::read(){
 
 // Reading the Graph from the file ----------------------------------------------------------------
-std::ifstream InputGraph("test.txt");
+std::ifstream InputGraph(FileName);
+
 std::string line;
 
 int counter=0; // counts vertices
@@ -43,7 +42,7 @@ while ( std::getline(InputGraph, line)){
   
   int src, dest;
   iss >> src;
-  std::cout << " Reading vertix: " << counter << "\n";
+  //std::cout << " Reading vertix: " << counter << "\n";
     while (iss >> dest){
         if (dest > src) {
           addEdge(src, dest);
@@ -53,13 +52,14 @@ while ( std::getline(InputGraph, line)){
 
 InputGraph.close(); 
 std::cout << " total number of edges: " << numE << "\n";
-
 }
 
 void Graph::printGraph() 
 { 
+  int count = 0;
   for (std::vector<Edge>::iterator itr=edges.begin(); itr!=edges.end(); ++itr){
-    std::cout << itr->src << " -> " << itr->dest << '\n';
+    std::cout << count << " " <<itr->src << " -> " << itr->dest << '\n';
+    count++;
   }
 } 
 

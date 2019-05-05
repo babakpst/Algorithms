@@ -9,16 +9,33 @@ Babak Poursartip
 #include "UnionFind.h"
 
 UnionFind::UnionFind(){}
-UnionFind::UnionFind(int numV):numV{numV},sz{numV+1,1}{
-  std::cout << "checkpoint uf 000 " << numV << std::endl;
+UnionFind::UnionFind(int numV):numV{numV},sz(numV+1,1){
+  
   for (int i = 0; i <= numV; ++i) id.push_back(i);
-  std::cout << "checkpoint uf 001" << std::endl;
+  /*
+  std::cout << " printing id: \n";
+  int count = 0;
+  for (std::vector<int>:: iterator iter = id.begin(); iter!=id.end(); ++iter) {
+    std::cout << count << " " << *iter << "\n";
+    count++;
+  }
+  std::cout << " printing sz: \n";
+  count = 0;
+  for (std::vector<int>:: iterator iter = sz.begin(); iter!=sz.end(); ++iter) {
+    std::cout << count << " " << *iter << "\n";
+    count++;
+  }
+*/
+
 }
 
 int UnionFind::getNumVertices(){return numV;}
 
 int UnionFind::find(int p){
-  while (p !=id[p]) p=id[p];
+  while (p !=id[p]) {
+    p=id[p]; 
+    }
+
   return p;
 }
 
@@ -42,6 +59,24 @@ void UnionFind::fUnion(int p, int q){
        sz[i] += sz[j];
      }
    numV--;
+
+
+ /*
+ std::cout << " printing id: \n";
+  int count = 0;
+  for (std::vector<int>:: iterator iter = id.begin(); iter!=id.end(); ++iter) {
+    std::cout << count << " " << *iter << "\n";
+    count++;
+  }
+  std::cout << " printing sz: \n";
+  count = 0;
+  for (std::vector<int>:: iterator iter = sz.begin(); iter!=sz.end(); ++iter) {
+    std::cout << count << " " << *iter << "\n";
+    count++;
+  }
+*/
+
+
 }
 
 UnionFind::~UnionFind(){}

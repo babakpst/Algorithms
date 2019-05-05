@@ -16,12 +16,12 @@ Assignment 4 of course I
 #include <fstream>
 #include <string>
 
-
 class Graph{
 
 private:
   int numV; // number of vertices
   int numE; // number of edges
+  std::string FileName;
 
   struct Edge{
     int src, dest;
@@ -32,12 +32,11 @@ private:
 
   std::vector<Edge> edges;
 
-
 public:
 
   Graph();
-  Graph(int numV);
-  Graph(int numV, int numE);
+  Graph(int numV, std::string FileName);
+  Graph(int numV, int numE, std::string FileName);
   ~Graph();
 
   int getNumV();

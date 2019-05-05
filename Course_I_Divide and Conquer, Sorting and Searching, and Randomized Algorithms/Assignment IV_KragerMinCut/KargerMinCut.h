@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+#include <iostream>
+#include <iomanip>
 
 #include "Graph.h"
 
