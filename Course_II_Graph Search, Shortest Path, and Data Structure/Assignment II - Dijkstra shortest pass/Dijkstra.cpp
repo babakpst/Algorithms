@@ -10,12 +10,8 @@ Assignment II: Dijkstra shortest path algorithm, without heap
 */
 
 #include <iostream>
-#include <forward_list>
 #include <fstream>
 #include <string>
-#include <stack>
-#include <vector>
-#include <algorithm>
 
 
 
@@ -23,6 +19,18 @@ Assignment II: Dijkstra shortest path algorithm, without heap
 int main(){
 
   std::cout << "\n Dijkstra shortest path algorithm for an undirected weighted graph \n";
+
+  // input ========================================================================================
+  // reading the graph from the input file ========================================================
+  std::string FileName;  // the name of the input file
+  FileName = "Dijkstra_Example.txt";
+  //FileName = "dijkstraData.txt";
+
+  int numVertices = 200; // no. of vertices in the graph.
+
+  std::fstream InputFile;
+  InputFile.open(FileName);
+
 
  
   std::cout << "\n End of the code! \n";
