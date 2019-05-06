@@ -66,8 +66,7 @@ void SCC_Kosaraju(std::forward_list<int> *&Graph, std::forward_list<int> *&Graph
 std::vector<bool> NodeExplored(n);
 std::stack<int> finishingTime; // We use a stack to store the node numbers based on finishing time
 
-for (int i = 0; i <n; ++i)
-  NodeExplored[i] = false;
+for (int i = 0; i <n; ++i) NodeExplored[i] = false;
 
 // first pass of depth-first-search to compute the f(v)'s, the magical ordering ----
 TopoSort(Graph_rev, NodeExplored, finishingTime, n);
@@ -185,5 +184,6 @@ int main(){
   for (std::vector<int> :: reverse_iterator ritr=NumOfNodeSCC.rbegin(); ritr < NumOfNodeSCC.rbegin()+5; ++ritr){
     std::cout << " max number of nodes: " << *ritr << std::endl;  
   }
-  return 0;
+ 
+ return 0;
 }
