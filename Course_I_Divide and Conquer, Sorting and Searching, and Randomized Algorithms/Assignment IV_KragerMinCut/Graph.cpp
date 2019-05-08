@@ -44,9 +44,7 @@ while ( std::getline(InputGraph, line)){
   iss >> src;
   //std::cout << " Reading vertix: " << counter << "\n";
     while (iss >> dest){
-        if (dest > src) {
-          addEdge(src, dest);
-          }
+        if (dest > src) addEdge(src, dest);
         }
   }
 
