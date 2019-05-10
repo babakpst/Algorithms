@@ -33,13 +33,12 @@ struct Edge{
   Edge(int src, int dest, int weight);
 };
 
-std::list <std::pair<int, int>> edges;
-
+std::list <std::pair<int, int>> *edges;
 
 public:
 
 Graph();
-Graph(std::string FileName, int numVertices);
+Graph(int numVertices, std::string FileName);
 
 void readGraph();
 void printGraph();

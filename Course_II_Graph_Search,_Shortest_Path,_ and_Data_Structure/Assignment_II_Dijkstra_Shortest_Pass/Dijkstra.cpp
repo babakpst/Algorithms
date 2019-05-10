@@ -23,13 +23,13 @@ int main(){
   // input ========================================================================================
   std::string FileName;  // the name of the input file
   FileName = "Dijkstra_Example.txt";
-  int numVertices = 9; // no. of vertices in the graph.
+  int numV = 9; // no. of vertices in the graph.
 
   //FileName = "dijkstraData.txt";
   //int numVertices = 200; // no. of vertices in the graph
 
   // reading the graph ============================================================================
-  Graph Graph(FileName, numVertices);
+  Graph Graph(numV, FileName);
   
   Graph.readGraph();
   Graph.printGraph();

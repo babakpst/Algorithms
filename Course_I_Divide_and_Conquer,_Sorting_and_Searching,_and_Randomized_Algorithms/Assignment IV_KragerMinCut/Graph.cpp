@@ -44,8 +44,8 @@ while ( std::getline(InputGraph, line)){
   iss >> src;
   //std::cout << " Reading vertix: " << counter << "\n";
     while (iss >> dest){
-        if (dest > src) addEdge(src, dest);
-        }
+      if (dest > src) addEdge(src, dest);
+      }
   }
 
 InputGraph.close(); 
@@ -61,8 +61,8 @@ void Graph::printGraph()
   }
 } 
 
-
 Graph::Edge Graph::getEdge(int index){return edges[index];}
+
 
 Graph::~Graph(){}
 Graph::Edge::~Edge(){}
