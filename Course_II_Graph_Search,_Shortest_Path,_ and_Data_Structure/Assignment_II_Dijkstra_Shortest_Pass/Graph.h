@@ -27,11 +27,13 @@ int numEdges;
 
 std::string FileName;
 
+/*
 struct Edge{
   int src, dest, weight;
   Edge();
   Edge(int src, int dest, int weight);
 };
+*/
 
 std::list <std::pair<int, int>> *edges;
 

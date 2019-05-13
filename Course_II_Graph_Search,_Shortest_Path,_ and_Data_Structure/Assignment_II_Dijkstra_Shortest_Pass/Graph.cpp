@@ -9,15 +9,18 @@ Assignment II, course II
 
 #include "Graph.h"
 
+//=================================================================================================
 Graph::Graph():numVertices(0), numEdges(0), FileName(" "){
   std::cout << "\n Creating graph with default values ... \n";
 }
 
+//=================================================================================================
 Graph::Graph(int numVertices, std::string FileName):numVertices{numVertices}, FileName{FileName}{
   std::cout << "\n Creating the graph object ... \n";
   edges = new std::list <std::pair<int, int>>[numVertices];
 }
 
+//=================================================================================================
 void Graph::readGraph(){
   std::cout << "\n Reading graph from file: " << FileName << "\n";
 
@@ -55,11 +58,13 @@ void Graph::readGraph(){
   std::cout << " read the graph from the input file, successfully! \n";
 }
 
+//=================================================================================================
 void Graph::addEdge(int src, int dest, int weight){
   edges[src].push_back(std::make_pair(dest, weight));
   edges[dest].push_back(std::make_pair(src, weight));
 }
 
+//=================================================================================================
 void Graph::printGraph(){
   for (int i=0; i<numVertices; ++i){
     std::cout << " vertix: " << i << "\n";

@@ -14,6 +14,7 @@ Assignment II: Dijkstra shortest path algorithm, without heap
 #include <string>
 
 #include "Graph.h"
+#include "ShortestPath.h"
 
 //=================================================================================================
 int main(){
@@ -35,7 +36,7 @@ int main(){
   Graph.printGraph();
   
   // Dijkstra algo, finding the shortest path =====================================================
-
+  Dijkstra ShortestPathAlgo(Graph);
 
  
   std::cout << "\n End of the code! \n";
