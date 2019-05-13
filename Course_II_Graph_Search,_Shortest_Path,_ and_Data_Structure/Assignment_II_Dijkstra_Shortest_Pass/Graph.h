@@ -17,6 +17,9 @@ The graph class
 #include <fstream>
 #include <string>
 #include <list>
+#include <vector>
+#include <set>
+#include <climits>
 
 class Graph{
 
@@ -36,7 +39,8 @@ struct Edge{
 */
 
 std::list <std::pair<int, int>> *edges;
-
+// Holds the shortest distance from the source vertix to vertix i -initialized to infinity.
+std::vector<int> ShortestDistance;
 public:
 
 Graph();
@@ -46,6 +50,10 @@ void readGraph();
 void printGraph();
 
 void addEdge(int src, int dest, int weight);
+
+void findShortestPath(int source);
+
+void printShortestDistance();
 
 };
 

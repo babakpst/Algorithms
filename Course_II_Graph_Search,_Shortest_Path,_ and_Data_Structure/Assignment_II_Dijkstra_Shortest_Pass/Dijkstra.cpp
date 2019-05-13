@@ -14,7 +14,6 @@ Assignment II: Dijkstra shortest path algorithm, without heap
 #include <string>
 
 #include "Graph.h"
-#include "ShortestPath.h"
 
 //=================================================================================================
 int main(){
@@ -23,11 +22,23 @@ int main(){
 
   // input ========================================================================================
   std::string FileName;  // the name of the input file
+  /*
   FileName = "Dijkstra_Example.txt";
   int numV = 9; // no. of vertices in the graph.
+  int source = 1; // the source vertix to find the shortest path
+  */
+  
+  /*
+  FileName = "dijkstraDataII.txt";
+  int numV = 200; // no. of vertices in the graph
+  int source = 1;
+  */
 
-  //FileName = "dijkstraData.txt";
-  //int numVertices = 200; // no. of vertices in the graph
+  ///*
+  FileName = "dijkstraData.txt";
+  int numV = 200; // no. of vertices in the graph
+  int source = 1;
+  //*/
 
   // reading the graph ============================================================================
   Graph Graph(numV, FileName);
@@ -36,9 +47,11 @@ int main(){
   Graph.printGraph();
   
   // Dijkstra algo, finding the shortest path =====================================================
-  Dijkstra ShortestPathAlgo(Graph);
+  
+  Graph.findShortestPath(source);
 
- 
+  Graph.printShortestDistance();
+
   std::cout << "\n End of the code! \n";
   return 0;
 }
