@@ -13,7 +13,6 @@ Assignment III: Median maintenance
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <iomanip>
 
 // objects
 #include "median.h"
@@ -27,7 +26,9 @@ int main() {
   inputStream.open("example.txt");
 
   // holds the sum of the medians
-  int SumOfMedian = find_Sum_Of_Median(inputStream);
+  Median Find_the_Median(std::ifstream inputStream, unsigned int SizeOfStream);
+
+  int SumOfMedian = Find_the_Median.find_Sum_Of_Median();
 
   std::cout << " The sum of all medias is: " << SumOfMedian << ".\n";
   std::cout << " The answer is: " << SumOfMedian % 10000 << ".\n";

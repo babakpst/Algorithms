@@ -1,31 +1,38 @@
 
+// libraries
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+
+// classes
+#include "heap.h"
 
 #ifndef MEDIAN_H
 #define MEDIAN_H
 
-// libraries
-#include <iostream>
-#include <fstream>
-
-// classes
-
-class median {
+class Median {
 
   // members
 private:
-  Heap *right;
-  Heap *left;
+  Heap_Data_Structure *right;
+  Heap_Data_Structure *left;
 
 public:
-  int SumOfMedian;
+  int SumOfMedian;           // holds the sum of the medians
+  int newNumber;             // holds the new number in the stream
+  unsigned int SizeOfStream; // size of the stream of numbers
+
+  std::ifstream inputStream; // input file name
 
   // methods
 private:
-  void MedianMaintenance();
+  int MedianMaintenance(int newNumber);
 
 public:
   median();
-  int find_Sum_Of_Median(std::ifstream inputStream);
-}
+  median(std::ifstream inputStream, unsigned int SizeOfStream);
+
+  int find_Sum_Of_Median();
+};
 
 #endif // !MEDIAN_H
