@@ -7,7 +7,7 @@ median::median() : SizeOfStream(0), inputFileName("") {
                "maintenance algorithm based on heap data structure. \n \n";
 }
 
-median::median(std::string inputFileName, unsigned int SizeOfStream)
+median::median(std::string inputFileName, int SizeOfStream)
     : inputFileName(inputFileName), SizeOfStream(SizeOfStream) {
   std::cout << " \n Finding the median of the sequence using median "
                "maintenance algorithm based on heap data structure. \n \n";
@@ -75,7 +75,7 @@ void median::MedianMaintenance(Heap_Data_Structure &right,
       // The min key in the right heap (min heap) should be transferred to the
       // left heap (max heap), first, and the new key should be added to the
       // right heap
-      left.InsertKey(right.extractMin); // removing the min from the righ heap
+      left.InsertKey(right.extract()); // removing the min from the righ heap
       right.InsertKey(newNumber); // inserting the new number in the left heap
     }
     // Both heaps have the same number of keys, thus the median is the average

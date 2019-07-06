@@ -6,6 +6,8 @@
 
 // classes
 #include "heap.h"
+#include "minHeap.h"
+#include "maxHeap.h"
 
 #ifndef MEDIAN_H
 #define MEDIAN_H
@@ -14,8 +16,8 @@ class median {
 
   // members
 private:
-  Heap_Data_Structure *right = new minHeap(); // right heap (min heap)
-  Heap_Data_Structure *left = new maxHeap();  // left heap (max heap)
+  Heap_Data_Structure *right = new minHeap(int CapSize); // right (min) heap
+  Heap_Data_Structure *left = new maxHeap(int CapSize);  // left (max) heap
 
   int Median;    // holds the median of the sequence in each iteration
   int newNumber; // holds the new number in the stream
@@ -23,7 +25,7 @@ private:
 public:
   int SumOfMedian; // holds the sum of the medians
 
-  unsigned int SizeOfStream; // size of the stream of numbers
+  int SizeOfStream; // size of the stream of numbers
 
   std::string inputFileName; // holds the name of the input file
 
