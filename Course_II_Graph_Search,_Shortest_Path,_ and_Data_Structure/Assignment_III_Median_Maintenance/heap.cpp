@@ -89,3 +89,6 @@ int Heap_Data_Structure::right(int term) { return 2 * term + 2; }
 
 // returns the min of the heap =================================================
 int Heap_Data_Structure::getMin() { return Heap_Array[0]; }
+
+// returns the numbers of keys in the heap =====================================
+int Heap_Data_Structure::GetHeapSize() { return Heap_Size; }
