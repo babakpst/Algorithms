@@ -11,7 +11,6 @@ Assignment III: Median maintenance
 
 // libraries
 #include <iostream>
-#include <fstream>
 #include <string>
 
 // objects
@@ -21,12 +20,11 @@ int main() {
 
   std::cout << " \n  --  Median maintenance -- \n";
 
-  unsigned int SizeOfStream = 20; // size of the stream of numbers
-  std::ifstream inputStream;      // input file name
-  inputStream.open("example.txt");
+  unsigned int SizeOfStream = 20;            // size of the stream of numbers
+  std::string inputFileName = "example.txt"; // holds the input file name
 
   // holds the sum of the medians
-  Median Find_the_Median(std::ifstream inputStream, unsigned int SizeOfStream);
+  median Find_the_Median(inputFileName, SizeOfStream);
 
   int SumOfMedian = Find_the_Median.find_Sum_Of_Median();
 

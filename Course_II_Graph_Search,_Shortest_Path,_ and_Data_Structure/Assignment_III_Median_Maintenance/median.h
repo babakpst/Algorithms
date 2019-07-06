@@ -10,7 +10,7 @@
 #ifndef MEDIAN_H
 #define MEDIAN_H
 
-class Median {
+class median {
 
   // members
 private:
@@ -22,7 +22,7 @@ public:
   int newNumber;             // holds the new number in the stream
   unsigned int SizeOfStream; // size of the stream of numbers
 
-  std::ifstream inputStream; // input file name
+  std::string inputFileName; // holds the name of the input file
 
   // methods
 private:
@@ -30,7 +30,7 @@ private:
 
 public:
   median();
-  median(std::ifstream inputStream, unsigned int SizeOfStream);
+  median(std::string inputFileName, unsigned int SizeOfStream);
 
   int find_Sum_Of_Median();
 };
