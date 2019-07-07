@@ -17,6 +17,12 @@ median::median(int SizeOfStream, std::string inputFileName)
   left = new maxHeap(SizeOfStream);
 }
 
+median::~median() {
+  std::cout << " Killing objects and shutting down the code: \n";
+  delete left;
+  delete right;
+}
+
 // median initiation ===========================================================
 int median::find_Sum_Of_Median() {
 
@@ -53,7 +59,8 @@ int median::sign_num(int LeftHeapSize, int RightHeapSize) {
 
 // finding the median by averaging the two mid number for the case that the
 // number of keys are even
-int median::average(int a, int b) { return (a + b) / 2; }
+// int median::average(int a, int b) { return (a + b) / 2; }
+int median::average(int a, int b) { return a; }
 
 // Median Maintenance algorithm ================================================
 int median::MedianMaintenance(int newNumber) {

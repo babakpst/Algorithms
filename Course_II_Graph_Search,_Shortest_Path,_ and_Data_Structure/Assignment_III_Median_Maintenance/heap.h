@@ -29,9 +29,13 @@ protected:
   int right(int term); // returns the right child
   int parent(int i);   // finds the parent of a key
 
+  bool greater(int var1, int var2); // returns true if var1 is greater than var2
+  bool smaller(int var1, int var2); // returns true if var1 is less than var2
+  // bool (*comp)(int, int);
+
 public:
-  // Constructor
   Heap_Data_Structure(int HeapSize);
+  virtual ~Heap_Data_Structure();
 
   // required functions to form the heap data structure
   virtual void InsertKey(int) = 0; // inserts a new element and heapify

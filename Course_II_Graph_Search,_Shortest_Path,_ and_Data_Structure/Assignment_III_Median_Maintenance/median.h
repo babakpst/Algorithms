@@ -39,7 +39,7 @@ private:
 public:
   median();
   median(int SizeOfStream, std::string inputFileName);
-  //~median();
+  ~median();
 
   int find_Sum_Of_Median();
 };

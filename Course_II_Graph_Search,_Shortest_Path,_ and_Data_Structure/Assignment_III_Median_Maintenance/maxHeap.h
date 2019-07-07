@@ -22,7 +22,7 @@ private:
 public:
   maxHeap();
   maxHeap(int CapSize);
-  ~maxHeap();
+  //~maxHeap();
 };
 
 #endif // !MAXHEAP_H

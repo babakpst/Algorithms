@@ -11,6 +11,8 @@ Heap_Data_Structure::Heap_Data_Structure(int Capacity) : Capacity{Capacity} {
   Heap_Array.reserve(Capacity);
 }
 
+Heap_Data_Structure::~Heap_Data_Structure() {}
+
 // swaping two keys in the heap ================================================
 void Heap_Data_Structure::swap(int *x1, int *x2) {
   int temp = *x1;
@@ -57,3 +59,9 @@ int Heap_Data_Structure::get() { return Heap_Array[0]; }
 
 // returns the numbers of keys in the heap =====================================
 int Heap_Data_Structure::GetHeapSize() { return Heap_Size; }
+
+// returns true if var1 is greater than var2 ===================================
+bool Heap_Data_Structure::greater(int var1, int var2) { return var1 > var2; }
+
+// returns true if var1 is less than var2 ======================================
+bool Heap_Data_Structure::smaller(int var1, int var2) { return var1 < var2; }
