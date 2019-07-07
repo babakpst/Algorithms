@@ -17,10 +17,11 @@ private:
   // required functions to form the heap data structure
   virtual void InsertKey(int var); // inserts a new element and heapify
   virtual void Heapify(int term);  // heapifying (min or max)
+  virtual int extract();
 
 public:
   minHeap();
-  minHeap(int CapSize);
+  minHeap(int Capacity);
   ~minHeap();
 };
 

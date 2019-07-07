@@ -4,11 +4,11 @@
 #include "heap.h"
 
 // constructor =================================================================
-Heap_Data_Structure::Heap_Data_Structure(int CapSize) {
+Heap_Data_Structure::Heap_Data_Structure(int Capacity) : Capacity{Capacity} {
   std::cout << " Constructing the heap array! \n";
   Heap_Size = 0;
-  Capacity = CapSize;
-  Heap_Array.reserve(CapSize);
+
+  Heap_Array.reserve(Capacity);
 }
 
 // swaping two keys in the heap ================================================
@@ -27,6 +27,7 @@ void Heap_Data_Structure::PrintHeap() {
     std::cout << " heap: " << Heap_Array[i] << "\n";
 }
 
+/*
 // extract the min of the heap and heapifies the rest of the heap ==============
 int Heap_Data_Structure::extract() {
   if (Heap_Size <= 0)
@@ -45,6 +46,7 @@ int Heap_Data_Structure::extract() {
 
   return root;
 }
+*/
 
 // returns the left child ======================================================
 int Heap_Data_Structure::left(int term) { return 2 * term + 1; }

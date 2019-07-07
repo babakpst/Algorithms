@@ -23,8 +23,6 @@ public:
   // -- methods
 private:
 protected:
-  virtual void Heapify(void) = 0; // heapifying (min or max)
-
   void swap(int *x1, int *x2); // swaping two keys in the heap used for bubbling
 
   int left(int term);  // returns the left child
@@ -36,10 +34,11 @@ public:
 
   // required functions to form the heap data structure
   virtual void InsertKey(void) = 0; // inserts a new element and heapify
+  virtual void Heapify(void) = 0;   // heapifying (min or max)
 
   void PrintHeap(); // prints the entire heap
 
-  int extract();     // extract the min/max key in the heap
+  virtual int extract(void) = 0; // extract the min/max key in the heap
   int get();         // returns either min or max of the heap (top key)
   int GetHeapSize(); // extracts the heap size
 };

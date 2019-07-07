@@ -2,7 +2,7 @@
 #include "minHeap.h"
 
 // constructor =================================================================
-minHeap::minHeap(int CapSize) : Heap_Data_Structure(int Capsize) {
+minHeap::minHeap(int Capacity) : Heap_Data_Structure(Capacity) {
   std::cout << " constructing the left (min) heap \n";
 }
 
@@ -39,4 +39,23 @@ void minHeap::Heapify(int term) {
     swap(&Heap_Array[term], &Heap_Array[smallest]);
     Heapify(smallest);
   }
+}
+
+// extract the min of the heap and heapifies the rest of the heap ==============
+int minHeap::extract() {
+  if (Heap_Size <= 0)
+    return INT16_MAX;
+  if (Heap_Size == 1) {
+    Heap_Size--;
+    return Heap_Array[0];
+  }
+
+  // If the heap has more than one element, we need to extract the root and
+  // bubble
+  int root = Heap_Array[0];
+  Heap_Array[0] = Heap_Array[Heap_Size - 1];
+  Heap_Size--;
+  Heapify(0);
+
+  return root;
 }

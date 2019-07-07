@@ -1,5 +1,7 @@
 
 #include "median.h"
+#include "minHeap.h"
+#include "maxHeap.h"
 
 // constructor =================================================================
 median::median() : SizeOfStream(0), inputFileName("") {
@@ -11,6 +13,8 @@ median::median(std::string inputFileName, int SizeOfStream)
     : inputFileName(inputFileName), SizeOfStream(SizeOfStream) {
   std::cout << " \n Finding the median of the sequence using median "
                "maintenance algorithm based on heap data structure. \n \n";
+  right = new minHeap(SizeOfStream);
+  left = new maxHeap(SizeOfStream);
 }
 
 // median initiation ===========================================================
@@ -22,7 +26,7 @@ int median::find_Sum_Of_Median() {
   std::ifstream inputStream(inputFileName);
 
   // loop of the stream of numbers
-  for (unsigned int i = 0; i < SizeOfStream; i++) {
+  for (int i = 0; i < SizeOfStream; i++) {
     std::cout << " reading sequence no.: " << std::setw(5) << i
               << " out of: " << std::setw(6) << SizeOfStream << "\n";
     inputStream >> temp;
@@ -52,8 +56,7 @@ int median::sign_num(int LeftHeapSize, int RightHeapSize) {
 int median::average(int a, int b) { return (a + b) / 2; }
 
 // Median Maintenance algorithm ================================================
-void median::MedianMaintenance(Heap_Data_Structure &right,
-                               Heap_Data_Structure &left, int newNumber) {
+void median::MedianMaintenance(int newNumber) {
   // this function returns the median of a sequence using the median
   // maintenance
   // mehtod, which is based on the heap data struture
@@ -62,7 +65,7 @@ void median::MedianMaintenance(Heap_Data_Structure &right,
   // keys
   // in each heap and compare them together. This check assures that the
   // difference between the number of keys in the two heap in not more than 1
-  int sig = sign_num(left.GetHeapSize(), right.GetHeapSize());
+  int sig = sign_num(left->GetHeapSize(), right->GetHeapSize());
 
   switch (sig) {
 
@@ -70,30 +73,30 @@ void median::MedianMaintenance(Heap_Data_Structure &right,
     if (newNumber < Median) {
       // The new number needs to be added to the left heap, and the two heap
       // would have the same number of keys at the end of this step.
-      left.InsertKey(newNumber);
+      left->InsertKey(newNumber);
     } else {
       // The min key in the right heap (min heap) should be transferred to the
       // left heap (max heap), first, and the new key should be added to the
       // right heap
-      left.InsertKey(right.extract()); // removing the min from the righ heap
-      right.InsertKey(newNumber); // inserting the new number in the left heap
+      left->InsertKey(right->extract()); // removing the min from the righ heap
+      right->InsertKey(newNumber); // inserting the new number in the left heap
     }
     // Both heaps have the same number of keys, thus the median is the average
     // the top keys in the two heaps
-    Median = average(left.get, right.get);
+    Median = average(left->get(), right->get());
     break;
 
   case 0: // if the two heaps have equal number of keys
     if (newNumber < Median) {
       // the new number should be added to the left (max) heap and that new
       // number is indeed the median
-      left.InsertKey(newNumber);
-      Median = left.get();
+      left->InsertKey(newNumber);
+      Median = left->get();
     } else {
       // the new number should be added the right (min) heap and that new number
       // is indeed the median
-      right.InsertKey(newNumber);
-      Median = right.get();
+      right->InsertKey(newNumber);
+      Median = right->get();
     }
     break;
 
@@ -102,15 +105,15 @@ void median::MedianMaintenance(Heap_Data_Structure &right,
       // the new number should fit in the left heap then, so, we need to extract
       // the min from the left heap and insert it in the right heap, first, and
       // then insert the new key in the left heap
-      right.InsertKey(left.extract());
-      left.InsertKey(newNumber);
+      right->InsertKey(left.extract());
+      left->InsertKey(newNumber);
     } else {
       // add the new number to the right heap
-      right.InsertKey(newNumber);
+      right->InsertKey(newNumber);
     }
     // Both heaps have the same number of keys, thus the median is the average
     // the top keys in the two heaps
-    Median = average(left.get, right.get);
+    Median = average(left->get(), right->get());
     break;
 
   default:

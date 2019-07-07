@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <string>
 
 // classes
 #include "heap.h"
@@ -16,8 +17,8 @@ class median {
 
   // members
 private:
-  Heap_Data_Structure *right = new minHeap(int CapSize); // right (min) heap
-  Heap_Data_Structure *left = new maxHeap(int CapSize);  // left (max) heap
+  Heap_Data_Structure *right; // right (min) heap
+  Heap_Data_Structure *left;  // left (max) heap
 
   int Median;    // holds the median of the sequence in each iteration
   int newNumber; // holds the new number in the stream
@@ -31,15 +32,14 @@ public:
 
   // methods
 private:
-  void MedianMaintenance(Heap_Data_Structure &right, Heap_Data_Structure &left,
-                         int newNumber);
+  void MedianMaintenance(int newNumber);
 
   int sign_num(int RightHeapSize, int LeftHeapSize);
   int average(int a, int b);
 
 public:
   median();
-  median(std::string inputFileName, unsigned int SizeOfStream);
+  median(std::string inputFileName, int SizeOfStream);
   ~median();
 
   int find_Sum_Of_Median();
