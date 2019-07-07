@@ -41,6 +41,7 @@ void minHeap::Heapify(int term) {
   }
 }
 
+/*
 // extract the min of the heap and heapifies the rest of the heap ==============
 int minHeap::extract() {
   if (Heap_Size <= 0)
@@ -59,3 +60,4 @@ int minHeap::extract() {
 
   return root;
 }
+*/

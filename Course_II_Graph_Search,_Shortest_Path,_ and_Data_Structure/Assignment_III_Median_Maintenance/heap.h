@@ -28,17 +28,19 @@ protected:
   int left(int term);  // returns the left child
   int right(int term); // returns the right child
   int parent(int i);   // finds the parent of a key
+
 public:
   // Constructor
   Heap_Data_Structure(int HeapSize);
 
   // required functions to form the heap data structure
-  virtual void InsertKey(int) = 0;   // inserts a new element and heapify
-  virtual void Heapify(int) = 0; // heapifying (min or max)
+  virtual void InsertKey(int) = 0; // inserts a new element and heapify
+  virtual void Heapify(int) = 0;   // heapifying (min or max)
 
   void PrintHeap(); // prints the entire heap
 
-  virtual int extract(void) = 0; // extract the min/max key in the heap
+  // virtual int extract(void) = 0; // extract the min/max key in the heap
+  int extract();     // extracts the min/max key
   int get();         // returns either min or max of the heap (top key)
   int GetHeapSize(); // extracts the heap size
 };

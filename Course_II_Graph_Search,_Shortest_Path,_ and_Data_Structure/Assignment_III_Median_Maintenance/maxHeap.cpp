@@ -40,7 +40,7 @@ void maxHeap::Heapify(int term) {
     Heapify(smallest);
   }
 }
-
+/*
 // extract the min of the heap and heapifies the rest of the heap ==============
 int maxHeap::extract() {
   if (Heap_Size <= 0)
@@ -59,3 +59,4 @@ int maxHeap::extract() {
 
   return root;
 }
+*/

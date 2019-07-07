@@ -1,12 +1,13 @@
 
 /*
-===================================================================================================
+===============================================================================
 Developer: Babak Poursartip
            The University of Texas at Austin
 
-Course II: Graph search, Shortest path, and Data Structure
+Course II:      Graph search, Shortest path, and Data Structure
 Assignment III: Median maintenance
-===================================================================================================
+Data:           07/07/2019
+===============================================================================
 */
 
 // libraries
