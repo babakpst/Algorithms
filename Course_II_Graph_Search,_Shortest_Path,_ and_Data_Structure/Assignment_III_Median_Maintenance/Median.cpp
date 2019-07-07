@@ -9,8 +9,8 @@ median::median() : SizeOfStream(0), inputFileName("") {
                "maintenance algorithm based on heap data structure. \n \n";
 }
 
-median::median(std::string inputFileName, int SizeOfStream)
-    : inputFileName(inputFileName), SizeOfStream(SizeOfStream) {
+median::median(int SizeOfStream, std::string inputFileName)
+    : SizeOfStream(SizeOfStream), inputFileName(inputFileName) {
   std::cout << " \n Finding the median of the sequence using median "
                "maintenance algorithm based on heap data structure. \n \n";
   right = new minHeap(SizeOfStream);
@@ -56,7 +56,7 @@ int median::sign_num(int LeftHeapSize, int RightHeapSize) {
 int median::average(int a, int b) { return (a + b) / 2; }
 
 // Median Maintenance algorithm ================================================
-void median::MedianMaintenance(int newNumber) {
+int median::MedianMaintenance(int newNumber) {
   // this function returns the median of a sequence using the median
   // maintenance
   // mehtod, which is based on the heap data struture
@@ -105,7 +105,7 @@ void median::MedianMaintenance(int newNumber) {
       // the new number should fit in the left heap then, so, we need to extract
       // the min from the left heap and insert it in the right heap, first, and
       // then insert the new key in the left heap
-      right->InsertKey(left.extract());
+      right->InsertKey(left->extract());
       left->InsertKey(newNumber);
     } else {
       // add the new number to the right heap
@@ -120,4 +120,5 @@ void median::MedianMaintenance(int newNumber) {
     std::cout << "something is wrong, check the median class.\n";
     break;
   }
+  return Median;
 }

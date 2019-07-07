@@ -33,8 +33,8 @@ public:
   Heap_Data_Structure(int HeapSize);
 
   // required functions to form the heap data structure
-  virtual void InsertKey(void) = 0; // inserts a new element and heapify
-  virtual void Heapify(void) = 0;   // heapifying (min or max)
+  virtual void InsertKey(int) = 0;   // inserts a new element and heapify
+  virtual void Heapify(int) = 0; // heapifying (min or max)
 
   void PrintHeap(); // prints the entire heap
 

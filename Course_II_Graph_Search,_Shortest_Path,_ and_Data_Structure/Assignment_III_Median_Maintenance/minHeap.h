@@ -22,7 +22,7 @@ private:
 public:
   minHeap();
   minHeap(int Capacity);
-  ~minHeap();
+  //~minHeap();
 };
 
 #endif // !MINHEAP_H

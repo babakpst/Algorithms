@@ -32,15 +32,14 @@ public:
 
   // methods
 private:
-  void MedianMaintenance(int newNumber);
-
+  int MedianMaintenance(int newNumber);
   int sign_num(int RightHeapSize, int LeftHeapSize);
   int average(int a, int b);
 
 public:
   median();
-  median(std::string inputFileName, int SizeOfStream);
-  ~median();
+  median(int SizeOfStream, std::string inputFileName);
+  //~median();
 
   int find_Sum_Of_Median();
 };
