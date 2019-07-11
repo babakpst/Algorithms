@@ -40,13 +40,7 @@ int median::find_Sum_Of_Median() {
 
     std::cout << " The meidan after adding " << std::setw(2) << i
               << "th term: " << std::setw(6) << temp << " is: " << Median
-<<<<<<< HEAD
-              << " and sum is: " << SumOfMedian << "\n";
-=======
               << "\n";
-    // left->PrintHeap();
-    // right->PrintHeap();
->>>>>>> CII_HIII_v2
     SumOfMedian += Median;
     // left->PrintHeap();
     // right->PrintHeap();
