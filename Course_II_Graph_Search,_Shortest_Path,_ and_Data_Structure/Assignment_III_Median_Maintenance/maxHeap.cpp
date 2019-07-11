@@ -31,9 +31,9 @@ void maxHeap::Heapify(int term) {
   int leftItem = left(term);
   int rightItem = right(term);
   int smallest = term;
-  if (leftItem > Heap_Size && Heap_Array[leftItem] > Heap_Array[term])
+  if (leftItem < Heap_Size && Heap_Array[leftItem] > Heap_Array[term])
     smallest = leftItem;
-  if (rightItem > Heap_Size && Heap_Array[rightItem] > Heap_Array[smallest])
+  if (rightItem < Heap_Size && Heap_Array[rightItem] > Heap_Array[smallest])
     smallest = rightItem;
   if (smallest != term) {
     swap(&Heap_Array[term], &Heap_Array[smallest]);
