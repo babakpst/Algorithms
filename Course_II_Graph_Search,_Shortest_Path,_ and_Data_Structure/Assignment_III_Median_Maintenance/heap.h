@@ -35,7 +35,7 @@ public:
   virtual ~Heap_Data_Structure();
 
   // required functions to form the heap data structure
-  virtual void InsertKey(int) = 0;    // inserts a new element and heapify
+  void InsertKey(int);                // inserts a new element and heapify
   virtual bool compare(int, int) = 0; // comare two numbers to if one is
                                       // greater/smaller than the other one
 

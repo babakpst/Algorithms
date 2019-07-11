@@ -24,7 +24,7 @@ int main() {
   // int SizeOfStream = 20;                     // size of the stream of numbers
   // std::string inputFileName = "example.txt"; // holds the input file name
 
-  int SizeOfStream = 20;                    // size of the stream of numbers
+  int SizeOfStream = 10000;                 // size of the stream of numbers
   std::string inputFileName = "Median.txt"; // holds the input file name
 
   // holds the sum of the medians

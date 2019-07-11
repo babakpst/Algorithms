@@ -10,7 +10,7 @@ median::median() : SizeOfStream(0), inputFileName("") {
 }
 
 median::median(int SizeOfStream, std::string inputFileName)
-    : SizeOfStream(SizeOfStream), inputFileName(inputFileName) {
+    : SumOfMedian(0), SizeOfStream(SizeOfStream), inputFileName(inputFileName) {
   std::cout << " \n Finding the median of the sequence using median "
                "maintenance algorithm based on heap data structure. \n \n";
   right = new minHeap(SizeOfStream);
@@ -41,8 +41,8 @@ int median::find_Sum_Of_Median() {
     std::cout << " The meidan after adding " << std::setw(2) << i
               << "th term: " << std::setw(6) << temp << " is: " << Median
               << "\n";
-    left->PrintHeap();
-    right->PrintHeap();
+    // left->PrintHeap();
+    // right->PrintHeap();
     SumOfMedian += Median;
   };
   return SumOfMedian;

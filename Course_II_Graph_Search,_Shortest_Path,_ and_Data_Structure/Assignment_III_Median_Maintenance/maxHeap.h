@@ -15,7 +15,6 @@ public:
   // methods
 private:
   // required functions to form the heap data structure
-  virtual void InsertKey(int var); // inserts a new element and heapify
   virtual bool compare(int, int);
 
 public:
