@@ -33,14 +33,20 @@ int median::find_Sum_Of_Median() {
 
   // loop of the stream of numbers
   for (int i = 0; i < SizeOfStream; i++) {
-    std::cout << " reading sequence no.: " << std::setw(5) << i
-              << " out of: " << std::setw(6) << SizeOfStream << "\n";
+    // std::cout << " reading sequence no.: " << std::setw(5) << i
+    //          << " out of: " << std::setw(6) << SizeOfStream << "\n";
     inputStream >> temp;
     Median = MedianMaintenance(temp);
 
     std::cout << " The meidan after adding " << std::setw(2) << i
               << "th term: " << std::setw(6) << temp << " is: " << Median
+<<<<<<< HEAD
               << " and sum is: " << SumOfMedian << "\n";
+=======
+              << "\n";
+    // left->PrintHeap();
+    // right->PrintHeap();
+>>>>>>> CII_HIII_v2
     SumOfMedian += Median;
     // left->PrintHeap();
     // right->PrintHeap();
