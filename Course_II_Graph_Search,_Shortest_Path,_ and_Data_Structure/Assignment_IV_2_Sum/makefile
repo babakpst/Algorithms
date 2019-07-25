@@ -14,9 +14,9 @@ LIBS = -L/usr/local/lib
 ## Include path
 INC = -I./
 ## General compile option
-CFLAGS = -Wall -Wextra -pedantic -std=c++14
+CFLAGS = -Wall -Wextra -pedantic -std=c++17
 ## Release option
-RFLAGS = -O3
+RFLAGS = -O2
 ## DO NOT CHANGE ################################################
 .PHONY: all clean dep test help
 
@@ -31,8 +31,11 @@ $(TARGET): $(OBJS)
 $(OBJS): $(SRCS)
 	mkdir -p $(ODIR)
 	$(CC) $(CFLAGS) $(RFLAGS) $(INC) -c $(SRCS)
+	
 cln:
-	rm $(TARGET)
+	#rm $(TARGET)
+	rm $(OBJS)
+	rm $(NAME).exe
 test:
 	@echo "Sources are: " $(SRCS)
 	@echo "Objects are: " $(OBJS)
