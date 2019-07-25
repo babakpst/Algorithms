@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <unordered_set>
 
 // classes
 
@@ -27,6 +28,7 @@ public:
   void readData();
   void brute_force_2_sum();
   void hash_table_2_sum();
+  void list_2_sum();
 };
 
 #endif // !TWOSUM_H

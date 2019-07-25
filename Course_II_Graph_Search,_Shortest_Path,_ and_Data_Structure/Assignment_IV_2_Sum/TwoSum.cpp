@@ -18,7 +18,7 @@ void TwoSum::readData() {
   for (int i = 0; i < sizeOfStream; ++i) {
     inputFile >> temp;
     numbers.push_back(temp);
-    // std::cout << " reading: " << numbers[i] << "\n";
+    std::cout << " reading: " << i << " " << numbers[i] << "\n";
   }
 }
 
@@ -42,4 +42,17 @@ void TwoSum::brute_force_2_sum() {
 // ===
 void TwoSum::hash_table_2_sum() {
   std::cout << " Evaluating 2-sum using hash table ... \n";
+}
+
+void TwoSum::list_2_sum() {
+  std::unordered_set<int> set;
+  for (int i = 0; i < sizeOfStream; i++) {
+    int temp = target - numbers[i];
+
+    if (set.find(temp) != set.end())
+      std::cout << "Pair with given target " << target << " is (" << numbers[i]
+                << ", " << temp << ")\n";
+
+    set.insert(numbers[i]);
+  }
 }
