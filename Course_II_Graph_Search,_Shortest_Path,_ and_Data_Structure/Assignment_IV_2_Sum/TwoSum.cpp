@@ -20,7 +20,21 @@ void TwoSum::readData() {
     numbers.push_back(temp);
     // std::cout << " reading: " << i << " " << numbers[i] << "\n";
   }
-  std::cout << "Done reading the data\n";
+  std::cout << " Done reading the data\n";
+
+  std::cout << " sorting ... \n";
+  std::sort(numbers.begin(), numbers.end());
+
+  int numRepetition = 0;
+  for (std::vector<long long>::iterator it = numbers.begin();
+       it != numbers.end() - 1; ++it) {
+    if (*it == *(it + 1)) {
+      numRepetition++;
+      std::cout << " repetition: " << *it << "\n";
+    }
+    // std::cout << " sorted: " << *it << "\n";
+  }
+  std::cout << " number of repetitions: " << numRepetition << "\n";
 }
 
 // ===
@@ -47,11 +61,6 @@ void TwoSum::brute_force_2_sum() {
   std::cout << " End of brute-force search \n";
 }
 
-// ===
-void TwoSum::hash_table_2_sum() {
-  std::cout << " Evaluating 2-sum using hash table ... \n";
-}
-
 void TwoSum::list_2_sum() {
 
   std::cout << " Evaluating 2-sum using unordered set ... \n";
@@ -68,5 +77,30 @@ void TwoSum::list_2_sum() {
     set.insert(numbers[i]);
   }
   std::cout << " Total number of pairs: " << NumOfPairs << "\n";
+  std::cout << " End of the unsorted set \n";
+}
+
+// ====
+void TwoSum::list_2_sum_total() {
+
+  std::cout << " Calculating total number of targets in the set ... \n";
+  int NumOfTargets = 0;
+  std::unordered_set<long long> set;
+  for (int i = 0; i < sizeOfStream; i++)
+    set.insert(numbers[i]);
+  for (long long targets = -10000; targets <= 10000; ++targets) {
+    for (int i = 0; i < sizeOfStream; i++) {
+
+      long long temp = targets - numbers[i];
+
+      if (set.find(temp) != set.end()) {
+        NumOfTargets++;
+        std::cout << " For target: " << targets << " there is: " << temp << ", "
+                  << numbers[i] << "\n";
+        break;
+      }
+    }
+  }
+  std::cout << " Total number of targets: " << NumOfTargets << "\n";
   std::cout << " End of the unsorted set \n";
 }

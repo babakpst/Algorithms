@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <unordered_set>
+#include <algorithm>
 
 // classes
 
@@ -27,8 +28,8 @@ public:
   TwoSum(int, long long, std::string);
   void readData();
   void brute_force_2_sum();
-  void hash_table_2_sum();
   void list_2_sum();
+  void list_2_sum_total();
 };
 
 #endif // !TWOSUM_H

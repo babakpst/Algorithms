@@ -27,15 +27,18 @@ OBJS = $(SRCS:.$(SEXT)=.o)
 all : $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) $(LIBS) $(OBJS) -o $(TARGET) 
-	rm $(OBJS)
+	#rm $(OBJS)
 $(OBJS): $(SRCS)
 	mkdir -p $(ODIR)
 	$(CC) $(CFLAGS) $(RFLAGS) $(INC) -c $(SRCS)
 	
 cln:
-	#rm $(TARGET)
+	# for windows
+	rm $(NAME).exe 
+	# for linux
+	#rm $(TARGET) 
 	rm $(OBJS)
-	rm $(NAME).exe
+
 test:
 	@echo "Sources are: " $(SRCS)
 	@echo "Objects are: " $(OBJS)
