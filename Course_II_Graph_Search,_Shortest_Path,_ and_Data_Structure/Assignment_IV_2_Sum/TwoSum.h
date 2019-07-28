@@ -17,14 +17,14 @@ class TwoSum {
 private:
 public:
   int sizeOfStream;
-  int target;
+  long long target;
   std::string inputFileName;
 
-  std::vector<int> numbers;
+  std::vector<long long> numbers;
   // methods
 private:
 public:
-  TwoSum(int, int, std::string);
+  TwoSum(int, long long, std::string);
   void readData();
   void brute_force_2_sum();
   void hash_table_2_sum();
