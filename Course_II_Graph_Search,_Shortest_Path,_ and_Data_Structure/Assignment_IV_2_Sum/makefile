@@ -1,53 +1,39 @@
-## Generic makefile by Heedong Goh <wellposed@gmail.com> ########
-## Name of the executable
-NAME = main
-## Complier
-CC = g++
-## Source extension
-SEXT = cpp
-## Source path
-SDIR = .
-## Output path
-ODIR = .
-## Library path
-LIBS = -L/usr/local/lib
-## Include path
-INC = -I./
-## General compile option
-CFLAGS = -Wall -Wextra -pedantic -std=c++17
-## Release option
-RFLAGS = -O2
-## DO NOT CHANGE ################################################
-.PHONY: all clean dep test help
+CXX      := -c++
+CXXFLAGS := -pedantic-errors -Wall -Wextra -Werror
+LDFLAGS  := -L/usr/lib -lstdc++ -lm
+BUILD    := ./build
+OBJ_DIR  := $(BUILD)/objects
+APP_DIR  := $(BUILD)/apps
+TARGET   := program
+INCLUDE  := -Iinclude/
+SRC      :=                      \
+	$(wildcard src/module_1/*.cpp) \
+	$(wildcard src/*.cpp)         \
 
-TARGET = $(ODIR)/$(NAME)
-SRCS = $(wildcard $(SDIR)/*.$(SEXT))
-OBJS = $(SRCS:.$(SEXT)=.o)
+OBJECTS := $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 
-all : $(TARGET)
-$(TARGET): $(OBJS)
-	$(CC) $(LIBS) $(OBJS) -o $(TARGET) 
-	#rm $(OBJS)
-$(OBJS): $(SRCS)
-	mkdir -p $(ODIR)
-	$(CC) $(CFLAGS) $(RFLAGS) $(INC) -c $(SRCS)
-	
-cln:
-	# for windows
-	rm $(NAME).exe 
-	# for linux
-	#rm $(TARGET) 
-	rm $(OBJS)
+all: build $(APP_DIR)/$(TARGET)
 
-test:
-	@echo "Sources are: " $(SRCS)
-	@echo "Objects are: " $(OBJS)
-help:
-	@echo "usage:"
-	@echo "      make -> build"
-	@echo "      make dep -> generates dependencies using gccmakedep"
-	@echo "      make clean -> removes objects, executable"
-	@echo "      make test -> lists source files"
-dep :
-	gccmakedep $(INC) $(SRCS)
-#################################################################
+$(OBJ_DIR)/%.o: %.cpp
+	@mkdir -p $(@D)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $<
+
+$(APP_DIR)/$(TARGET): $(OBJECTS)
+	@mkdir -p $(@D)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) $(LDFLAGS) -o $(APP_DIR)/$(TARGET) $(OBJECTS)
+
+.PHONY: all build clean debug release
+
+build:
+	@mkdir -p $(APP_DIR)
+	@mkdir -p $(OBJ_DIR)
+
+debug: CXXFLAGS += -DDEBUG -g
+debug: all
+
+release: CXXFLAGS += -O2
+release: all
+
+clean:
+	-@rm -rvf $(OBJ_DIR)/*
+	-@rm -rvf $(APP_DIR)/*
