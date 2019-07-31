@@ -13,7 +13,17 @@ TwoSum::TwoSum(int sizeOfStream, long long target, std::string inputFileName)
 // ======
 void TwoSum::readData() {
   std::cout << " reading numbers from the file ... \n";
-  std::ifstream inputFile(inputFileName);
+  // opening the input file
+  inputFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+  try {
+    inputFile.open(inputFileName, std::ios::in);
+  } catch (std::ifstream::failure
+               &inputerr) { // here is the catch for opening the input file.
+    std::cout << " Error while opening the input file. \n";
+    std::cout << " Please make sure the input file is in the cpp folder.\n";
+    std::cout << " The error message is: " << inputerr.what() << "\n";
+  }
+
   long long temp;
   for (int i = 0; i < sizeOfStream; ++i) {
     inputFile >> temp;

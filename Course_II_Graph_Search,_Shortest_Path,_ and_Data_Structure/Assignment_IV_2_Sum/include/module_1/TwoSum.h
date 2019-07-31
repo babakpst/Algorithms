@@ -20,6 +20,7 @@ public:
   int sizeOfStream;
   long long target;
   std::string inputFileName;
+  std::ifstream inputFile;
 
   std::vector<long long> numbers;
   // methods
