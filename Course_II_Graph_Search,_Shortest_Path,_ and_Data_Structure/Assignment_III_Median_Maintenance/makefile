@@ -44,4 +44,7 @@ help:
 	@echo "      make test -> lists source files"
 dep :
 	gccmakedep $(INC) $(SRCS)
+debug: CFLAGS += -DDEBUG -g
+debug: all
+
 #################################################################
