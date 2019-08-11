@@ -21,15 +21,14 @@ int main() {
 
   std::cout << " \n  --  2-Sum problem -- \n";
 
-  int sizeOfStream = 20; // size of the stream of numbers
-  long long target = 15; // target sum
-  std::string inputFileName =
-      "../../input/example.txt"; // holds the input file name
-
-  // int sizeOfStream = 1000000;             // size of the stream of numbers
-  // long long target = 7547817288ll;        // target sum
-  // std::string inputFileName = "../../input/2sum.txt"; // holds the input file
+  // int sizeOfStream = 20; // size of the stream of numbers
+  // long long target = 15; // target sum
+  // std::string inputFileName = "input/example.txt"; // holds the input file
   // name
+
+  int sizeOfStream = 1000000;                   // size of the stream of numbers
+  long long target = 7547817288ll;              // target sum
+  std::string inputFileName = "input/2sum.txt"; // holds the input file name
 
   TwoSum Find_Two_Sum(sizeOfStream, target, inputFileName);
   Find_Two_Sum.readData();
