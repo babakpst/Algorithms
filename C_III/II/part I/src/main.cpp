@@ -33,10 +33,10 @@ int main() {
   try {
 
     if (DEBUG) {
-      inpGraph.open("input/clustering_big_test2.txt", std::ios::in);
+      inpGraph.open("input/clustering_test2.txt", std::ios::in);
       mod = 1;
     } else {
-      inpGraph.open("input/clustering_big.txt", std::ios::in);
+      inpGraph.open("input/clustering1.txt", std::ios::in);
       mod = 1;
     }
   } catch (std::ifstream::failure &inputerr) { // catch for the input file

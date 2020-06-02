@@ -25,7 +25,7 @@ Data:           05/23/2020
 int main() {
 
   message m;
-  m.pt("course III - assingnment I: scheduling jobs: ");
+  m.pt("course III - assingnment I: scheduling jobs ");
 
   std::vector<int> list; // vector to hold jobs and weights
   unsigned int njobs;    // total number of jobs in the file

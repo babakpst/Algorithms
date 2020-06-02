@@ -25,7 +25,7 @@ int main() {
 
   message m;
   int mod;
-  m.pt("course III - assingnment I: Prim's algo: ");
+  m.pt("course III - assingnment I: Prim's algo ");
 
   // reading the graph from the input file
   std::fstream inpGraph; // input file handler
