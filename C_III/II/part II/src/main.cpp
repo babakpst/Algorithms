@@ -22,7 +22,6 @@ Data:           05/25/2020
 int main() {
 
   message m;
-  int mod;
   int nCluster = 4; // input
 
   m.pt("course III - assingnment II: cluster ");
@@ -34,10 +33,8 @@ int main() {
 
     if (DEBUG) {
       inpGraph.open("input/clustering_big_test.txt", std::ios::in);
-      mod = 1;
     } else {
       inpGraph.open("input/clustering_big.txt", std::ios::in);
-      mod = 1;
     }
   } catch (std::ifstream::failure &inputerr) { // catch for the input file
     m.pt(" Error while opening the input file!!! ");
@@ -53,9 +50,9 @@ int main() {
   m.pti(" vertices: ", nV);
   m.pti(" nbits: ", nbits);
 
-  cluster cl(nV);
+  cluster cl(nV, nCluster);
 
-  for (int i = 0; i < nV - 1; ++i) {
+  for (int i = 0; i < nV; ++i) {
     std::vector<int> vertix;
     int w;
     for (int j = 0; j < nbits; ++j) {
@@ -66,42 +63,44 @@ int main() {
   }
 
   m.pt("here is the input:");
-  // if (DEBUG)
-  cl.printInput();
+  if (DEBUG)
+    cl.printInput();
 
-  for (int i = 0; i < nV; ++i) {
-    for (int j = i + 1; j < nV; ++j) {
-    }
-  }
-  int index;
+  int index1, index2;
   int distance;
   std::vector<int>::iterator vit1, vit2;
   for (std::vector<std::vector<int>>::iterator it1 = cl.graph.begin();
        it1 != cl.graph.end(); ++it1) {
-    index = it1 - cl.graph.begin();
-    printf(" %3d\n", index);
+    index1 = it1 - cl.graph.begin();
+    printf(" %3d\n", index1);
     for (std::vector<std::vector<int>>::iterator it2 = it1 + 1;
          it2 != cl.graph.end(); ++it2) {
       vit1 = (*it1).begin();
       vit2 = (*it2).begin();
+      index2 = it2 - cl.graph.begin();
       distance = 0;
       for (int i = 0; i < nbits; ++i) {
         distance += abs(*vit1 - *vit2);
         ++vit1;
         ++vit2;
       }
-      printf(" distance: %d \n", distance);
+      // printf(" distance: %d \n", distance);
+      cl.pushEdge(index1, index2, distance);
     }
   }
 
-  // cl.printGraph();
-  /*
+  if (DEBUG)
+    cl.printGraph();
+
+  m.pt("working on the cluster");
   cl.findClusters();
+  m.pt("renumbering");
   cl.clusterRenumber();
+  m.pt("distance");
   cl.findDist();
+  m.pt("printing");
   cl.printCluster();
-  cl.findDist();
-*/
+
   m.pt("End of the code!");
   return 0;
 }

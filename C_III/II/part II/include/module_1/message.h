@@ -9,7 +9,7 @@ class:     all messaging functions
 
 #include <stdio.h>
 
-#define DEBUG 1 // 0 false 1 true
+#define DEBUG 0 // 0 false 1 true
 
 #ifndef MESSAGE_H
 #define MESSAGE_H

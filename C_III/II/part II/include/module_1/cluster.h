@@ -43,13 +43,13 @@ private:
 
 public:
   cluster(const int);
+  cluster(const int, const int);
 
   // pushes a vertix and its corresponding weighted edge
-  void pushEdge(const int u, const int v, const int w, const int i,
-                const int j);
+  void pushEdge(const int u, const int v, const int w);
 
   void printInput();
-  // void printGraph();
+  void printGraph();
   void printCluster();
   void findClusters();
   void clusterRenumber();

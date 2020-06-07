@@ -12,17 +12,27 @@ cluster::cluster(const int nVertices)
 
   m.pt(" input received.");
 }
+cluster::cluster(const int nVertices, const int nCluster)
+    : nVertices{nVertices}, nCluster{nCluster}, currentCluster{nVertices} {
+
+  clusters.resize(nVertices);
+
+  for (int i = 0; i < nVertices; ++i)
+    clusters[i] = i;
+
+  m.pt(" input received.");
+}
 
 // =============================================================================
 // calculates the number of clusters in the graph
 void cluster::numberCluster(const int counter) {
 
   int nclus = 0;
-  int var1, var2;
+  // int var1, var2;
   std::vector<int>::iterator vit;
   std::vector<int> ndiff;
   ndiff.resize(nVertices);
-  printf(" +++++++eliminated: ");
+
   for (int i = 0; i < nVertices; ++i) {
     for (vit = clusters.begin(); vit != clusters.end(); ++vit) {
       if (i == *vit) {
@@ -30,14 +40,14 @@ void cluster::numberCluster(const int counter) {
         break;
       }
     }
-    var1 = vit - clusters.begin();
-    var2 = clusters.end() - clusters.begin();
-    if (var1 == var2)
-      printf(" %d ", i);
+    // var1 = vit - clusters.begin();
+    // var2 = clusters.end() - clusters.begin();
+    // if (var1 == var2)
+    //  printf(" %d ", i);
   }
-  printf("\n no clusters: %d %d \n", nclus, counter);
-  if ((nclus + counter) != nVertices)
-    printf("zzzzzzzzzzzzzzzz\n");
+  // printf("\n no clusters: %d %d \n", nclus, counter);
+  // if ((nclus + counter) != nVertices)
+  //  printf("zzzzzzzzzzzzzzzz\n");
 }
 
 // =============================================================================
@@ -60,8 +70,11 @@ void cluster::findDist() {
     *it = INT_MAX;
 
   int clus_min, clus_max;
+  int index = 0;
   for (std::multimap<int, std::pair<int, int>>::iterator it = inpGraph.begin();
        it != inpGraph.end(); ++it) {
+    index++;
+    // printf(" max dis: %d \n", index);
     if (clusters[it->second.first] != clusters[it->second.second]) {
       clus_min = (clusters[it->second.first] > clusters[it->second.second])
                      ? clusters[it->second.second]
@@ -69,7 +82,9 @@ void cluster::findDist() {
       clus_max = (clusters[it->second.first] < clusters[it->second.second])
                      ? clusters[it->second.second]
                      : clusters[it->second.first];
-
+      if (DEBUG)
+        printf(" %d %d %d %d\n", clus_min, clus_max,
+               distances[indexfinder(clus_min, clus_max)], it->first);
       if (distances[indexfinder(clus_min, clus_max)] > it->first) {
         distances[indexfinder(clus_min, clus_max)] = it->first;
       }
@@ -77,7 +92,9 @@ void cluster::findDist() {
   }
   for (std::vector<int>::iterator it = distances.begin(); it < distances.end();
        ++it)
-    printf(" output: %d \n", *it);
+
+    if (DEBUG)
+      printf(" output: %d \n", *it);
 }
 
 // =============================================================================
@@ -103,10 +120,9 @@ void cluster::clusterRenumber() {
 }
 
 // =============================================================================
-void cluster::pushEdge(const int u, const int v, const int w, const int i,
-                       const int j) {
+void cluster::pushEdge(const int u, const int v, const int w) {
   if (DEBUG)
-    printf("edge %d %d: %d %d %d \n", i, j, u, v, w);
+    printf("edge %d %d: %d \n", u, v, w);
 
   inpGraph.insert(
       std::pair<int, std::pair<int, int>>(w, std::pair<int, int>(u, v)));
@@ -126,6 +142,21 @@ void cluster::printInput() {
     }
     printf("\n");
   }
+}
+
+// =============================================================================
+// prints the graph, converted from input
+void cluster::printGraph() {
+  m.pt("graph: ");
+  int index = 0;
+  for (auto e : inpGraph) {
+    printf("%3d w: %3d - %3d--%3d \n", index, e.first, e.second.first,
+           e.second.second);
+    index++;
+  }
+  m.pt("clusters: ");
+  for (int i = 0; i < nVertices; ++i)
+    std::cout << i << ": " << clusters[i] << "\n";
 }
 
 // =============================================================================
@@ -149,8 +180,8 @@ void cluster::findClusters() {
   for (std::multimap<int, std::pair<int, int>>::iterator it = inpGraph.begin();
        it != inpGraph.end(); ++it) {
 
-    // std::cout << it->first << " " << it->second.first << " "
-    //<< it->second.second << "\n";
+    std::cout << it->first << " " << it->second.first << " "
+              << it->second.second << "\n";
 
     if (currentCluster > nCluster) {
 
@@ -163,13 +194,13 @@ void cluster::findClusters() {
       } else
         continue;
 
-      // if (DEBUG)
-      std::cout << " \n merging " << counter << ": "
-                << "  " << it->first << "  " << it->second.first << "  "
-                << it->second.second << "  --" << group << "-" << index
-                << " || " << clusters[it->second.first] << "  "
-                << clusters[it->second.second] << " " << clusters[index]
-                << "\n";
+      if (DEBUG)
+        std::cout << " \n merging " << counter << ": "
+                  << "  " << it->first << "  " << it->second.first << "  "
+                  << it->second.second << "  --" << group << "-" << index
+                  << " || " << clusters[it->second.first] << "  "
+                  << clusters[it->second.second] << " " << clusters[index]
+                  << "\n";
       --currentCluster;
       ++counter;
       int old = clusters[index];
@@ -178,10 +209,12 @@ void cluster::findClusters() {
         if (*vit == old) {
           *vit = group;
           var = vit - clusters.begin();
-          std::cout << std::setw(10) << var << "--" << group << "  ";
+          if (DEBUG)
+            std::cout << std::setw(10) << var << "--" << group << "  ";
         }
       }
-      std::cout << std::endl;
+      if (DEBUG)
+        std::cout << std::endl;
 
       numberCluster(counter);
       if (DEBUG)
