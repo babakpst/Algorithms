@@ -2,6 +2,7 @@
 *.o
 .mod
 *.exe
-quiz/
+*/quiz/
+*/.vscode
 Slides/
 references-books/
