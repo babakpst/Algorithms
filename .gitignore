@@ -1,4 +1,7 @@
 # ignore the following files
 *.o
-#.mod
-#*.exe
+.mod
+*.exe
+quiz/
+Slides/
+references-books/

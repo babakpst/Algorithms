@@ -1,9 +1,0 @@
- output: 746 
- output: 1641 
- output: 107 
- output: 1162 
- output: 106 
- output: 123 
-
-
-answer output: 1641 
