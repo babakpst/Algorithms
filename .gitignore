@@ -3,6 +3,6 @@
 .mod
 *.exe
 */quiz/
-*/.vscode
+*/.vscode/
 Slides/
 references-books/
