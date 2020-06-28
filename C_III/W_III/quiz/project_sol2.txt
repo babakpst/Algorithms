@@ -1,2 +1,0 @@
-part 1:answer output: 19
-part 2:answer output: 9
