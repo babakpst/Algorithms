@@ -31,11 +31,16 @@ void Graph::readGraph(){
   
   std::string line;
   std::string temp;
-
   int count = 0; // counts number of vertices in the file
     while (std::getline(inputFile, line)){
       count++;
+      std::cout << "lineaa: " << line.at(line.length()-1) << "z\n";
+      //if (line.at(line.length()-1) == "\0")       std::cout << "yes yes\n";
+      line.pop_back();
       std:: stringstream iss(line);
+
+      std::cout << "line: " << line << "\n";
+
 
       int src;    // the vertix no (from)- source
       int dest;   // the vertix no (to)- destination
@@ -45,7 +50,7 @@ void Graph::readGraph(){
       src = std::stoi(temp);
 
       std::cout << " ---reading vertix: " << src << "\n";
-
+     
         while (std::getline(iss, temp,',')){
           dest = std::stoi(temp);
           std::getline(iss, temp, ' ');
@@ -93,7 +98,6 @@ void Graph::findShortestPath(int source){
   // searching for the shortest path
   while (!ProcessedVertices.empty()){
 
-    std::cout << " here \n";
     // The first vertex in Set is the minimum distance vertex, extract it from set. 
     std::pair<int, int> tmp = *(ProcessedVertices.begin()); 
     ProcessedVertices.erase(ProcessedVertices.begin()); 

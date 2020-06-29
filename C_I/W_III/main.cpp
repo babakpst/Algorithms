@@ -7,24 +7,30 @@
 #include <cstdlib>
 #include <ctime>
 
+#define DEBUG 0
+long long int noComparison=0; 
 
+// ===========================================================
 int ChoosePivot(int l, int r, int flag){
 
-int i;  // pivot
+int i=0;  // pivot
 if (flag==1){
-i = l; // always the first element
+ i = l; // always the first element
 } else if (flag ==2){
-i = r; // always the last element
+ i = r; // always the last element
 } else if (flag ==3){
-i = l + rand() %(l-r+1);      // random pivot, average of 10 runs
+ i = l + rand() %(l-r+1);      // random pivot, average of 10 runs
+} else if (flag ==4){
+// not active
 }
-std::cout<< " pivot " << l << " " << i << " " << r <<  std::endl;
+if (DEBUG) std::cout<< " pivot " << l << " " << i << " " << r <<  std::endl;
 
 return i;
 }
 
-int Partition(int*& array, int l, int r){
 
+// ===========================================================
+int Partition(int*& array, int l, int r){
   // new pivot position
   int p = array[l];
   int i = l+1;
@@ -41,9 +47,8 @@ int Partition(int*& array, int l, int r){
   array[l] = array[i-1];
   array[i-1] = temp;
 
-
-
-  std::cout << " Partitioned " << l << " " << r << " " << i - 1 << std::endl;
+  if (DEBUG) std::cout << " Partitioned " << l << " " << r << " " << i - 1 << std::endl;
+  if (DEBUG) 
   for (int k = l; k < r; k++){
     std::cout << " sorted "  << k << " : " << array[k] << "\n";
   }
@@ -57,7 +62,8 @@ void QuickSort(int*& array, int l, int r){
 // base case
 if (l>=r) return;
 
-int flag = 1;
+// input ===========
+int flag = 3;
 
 // pivot
 int i = ChoosePivot( l, r, flag); 
@@ -69,7 +75,10 @@ array[i]= temp;
 
 // new pivot position
 int j=Partition(array, l, r);
-std::cout << " new pivot position: " << j << " l " << l << " r " << r << std::endl;
+noComparison += (long long int)(r-l);
+std::cout << " quick: " << noComparison << "\n";
+
+if (DEBUG)  std::cout << " new pivot position: " << j << " l " << l << " r " << r << std::endl;
 if (l<j-1) QuickSort(array, l, j-1);
 if (j+1<r) QuickSort(array, j+1, r);
 
@@ -78,7 +87,9 @@ if (j+1<r) QuickSort(array, j+1, r);
 // main code ======================================================================================
 int main(){
 
-int const sizeOfArray = 15;
+// input ==================
+//int const sizeOfArray = 15;
+int const sizeOfArray = 10000;
 int *array= new int[sizeOfArray];
 
 
@@ -93,20 +104,26 @@ for (int i = 0; i < sizeOfArray; i++){
 */
 
 std::fstream InputFile;
-InputFile.open("input1.txt", std::ios::in);
+
+// input ==================
+//InputFile.open("input1.txt", std::ios::in);
+InputFile.open("QuickSort.txt", std::ios::in);
 
 for (int i =0; i < sizeOfArray; i++){
   InputFile >> array[i];
-  std::cout << " array " << i << " : " << array[i] << "\n";
+  if (DEBUG) std::cout << " array " << i << " : " << array[i] << "\n";
 }
 
-
-  QuickSort(array,0 ,sizeOfArray);
+  QuickSort(array,0 ,sizeOfArray-1);
   
   std::cout << " Done wtih the QuickSort function! " << std::endl;
+  if (DEBUG)  
   for (int i = 0; i < sizeOfArray; i++){
     std::cout << " sorted "  << i << " : " << array[i] << "\n";
   }
+
+  std::cout << " total number of comparisons: "  << noComparison << "\n";
+  
   delete[] array;
   return 0;
 }
